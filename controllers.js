@@ -5,7 +5,7 @@ const Contact = require('./Contact')
 exports.getAllContact = (req, res) =>{
   Contact.find()
         .then(contacts =>{
-            res.json(contacts)
+           res.render('app',{contacts})
         })
         .catch(e=>{
             console.log(e)
@@ -32,11 +32,13 @@ exports.getSingelcontact = (req, res) =>{
 }
 exports.creactContact = (req, res) =>{
     let{name,phone,email} = req.body
+    console.log(req.body);
+
     let contact = new Contact({
         name,
         email,
         phone
-    })
+    })  
    
    contact.save()
         .then(c =>{
